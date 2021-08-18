@@ -16726,8 +16726,6 @@ var HlsJSQualitySelectorPlugin = function () {
     var hlsjs = this.getHlsJs();
     var levels = hlsjs.levels || [];
 
-    console.log('setQualityHlsJs', height, levels);
-
     if (height === 'auto') {
       hlsjs.currentLevel = -1;
       this.setButtonInnerText('auto');

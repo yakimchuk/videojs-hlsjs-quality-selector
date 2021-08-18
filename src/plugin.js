@@ -248,8 +248,6 @@ class HlsJSQualitySelectorPlugin {
     const hlsjs = this.getHlsJs();
     const levels = hlsjs.levels || [];
 
-    console.log('setQualityHlsJs', height, levels);
-
     if(height === 'auto') {
       hlsjs.currentLevel = -1;
       this.setButtonInnerText('auto');
