@@ -1,6 +1,6 @@
 /**
  * videojs-hls-js-quality-selector
- * @version 1.0.0
+ * @version 1.0.2
  * @copyright 2021 [object Object]
  * @license MIT
  */
@@ -12,7 +12,7 @@
 
 videojs = videojs && videojs.hasOwnProperty('default') ? videojs['default'] : videojs;
 
-var version = "1.0.0";
+var version = "1.0.2";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
   return typeof obj;
@@ -16483,6 +16483,7 @@ var HlsJSQualitySelectorPlugin = function () {
     classCallCheck(this, HlsJSQualitySelectorPlugin);
 
     this.player = player;
+    this.config = options;
 
     // If there is quality levels plugin and the HLS tech exists
     // then continue.

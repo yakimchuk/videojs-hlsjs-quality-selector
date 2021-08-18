@@ -5,7 +5,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 var videojs = _interopDefault(require('video.js'));
 var Hls = _interopDefault(require('hls.js'));
 
-var version = "1.0.0";
+var version = "1.0.2";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
   return typeof obj;
@@ -496,6 +496,7 @@ var HlsJSQualitySelectorPlugin = function () {
     classCallCheck(this, HlsJSQualitySelectorPlugin);
 
     this.player = player;
+    this.config = options;
 
     // If there is quality levels plugin and the HLS tech exists
     // then continue.
