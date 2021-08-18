@@ -1,6 +1,6 @@
 /**
  * videojs-hls-js-quality-selector
- * @version 1.0.2
+ * @version 1.0.3
  * @copyright 2021 [object Object]
  * @license MIT
  */
@@ -12,7 +12,7 @@
 
 videojs = videojs && videojs.hasOwnProperty('default') ? videojs['default'] : videojs;
 
-var version = "1.0.2";
+var version = "1.0.3";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
   return typeof obj;

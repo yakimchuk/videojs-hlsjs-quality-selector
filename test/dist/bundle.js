@@ -44,7 +44,7 @@ if (typeof document !== 'undefined') {
 
 var document_1 = doccy;
 
-var version = "1.0.2";
+var version = "1.0.3";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
   return typeof obj;

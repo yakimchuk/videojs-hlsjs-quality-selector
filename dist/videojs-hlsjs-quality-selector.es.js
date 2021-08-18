@@ -1,7 +1,7 @@
 import videojs from 'video.js';
 import Hls from 'hls.js';
 
-var version = "1.0.2";
+var version = "1.0.3";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
   return typeof obj;
