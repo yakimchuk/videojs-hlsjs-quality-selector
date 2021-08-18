@@ -131,10 +131,26 @@ class HlsJSQualitySelectorPlugin {
       placementIndex);
 
     concreteButtonInstance.addClass('vjs-quality-selector');
-    concreteButtonInstance
-      .menuButton_.$('.vjs-icon-placeholder').className += ' vjs-icon-hd';
-    concreteButtonInstance.removeClass('vjs-hidden');
+    if (!this.config.displayCurrentQuality) {
+      const icon = ` ${this.config.vjsIconClass || 'vjs-icon-hd'}`;
 
+      concreteButtonInstance
+        .menuButton_.$('.vjs-icon-placeholder').className += icon;
+    } else {
+      this.setButtonInnerText('auto');
+    }
+
+    concreteButtonInstance.removeClass('vjs-hidden');
+  }
+
+  /**
+   * Set inner button text.
+   *
+   * @param {string} text - the text to display in the button.
+   */
+  setButtonInnerText(text) {
+    this._qualityButton
+      .menuButton_.$('.vjs-icon-placeholder').innerHTML = text;
   }
 
   /**
@@ -231,13 +247,17 @@ class HlsJSQualitySelectorPlugin {
     const hlsjs = this.getHlsJs();
     const levels = hlsjs.levels || [];
 
+    console.log('setQualityHlsJs', height, levels);
+
     if(height === 'auto') {
       hlsjs.currentLevel = -1;
+      this.setButtonInnerText('auto');
     } else {
       for(let i = 0; i < levels.length; ++i) {
         const level = levels[i];
         if(level.height === height) {
           hlsjs.currentLevel = i;
+          this.setButtonInnerText(`${height}p`);
           break;
         }
       }

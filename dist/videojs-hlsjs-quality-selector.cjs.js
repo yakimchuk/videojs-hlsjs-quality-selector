@@ -613,8 +613,26 @@ var HlsJSQualitySelectorPlugin = function () {
     var concreteButtonInstance = player.controlBar.addChild(this._qualityButton, { componentClass: 'qualitySelector' }, placementIndex);
 
     concreteButtonInstance.addClass('vjs-quality-selector');
-    concreteButtonInstance.menuButton_.$('.vjs-icon-placeholder').className += ' vjs-icon-hd';
+    if (!this.config.displayCurrentQuality) {
+      var icon = ' ' + (this.config.vjsIconClass || 'vjs-icon-hd');
+
+      concreteButtonInstance.menuButton_.$('.vjs-icon-placeholder').className += icon;
+    } else {
+      this.setButtonInnerText('auto');
+    }
+
     concreteButtonInstance.removeClass('vjs-hidden');
+  };
+
+  /**
+   * Set inner button text.
+   *
+   * @param {string} text - the text to display in the button.
+   */
+
+
+  HlsJSQualitySelectorPlugin.prototype.setButtonInnerText = function setButtonInnerText(text) {
+    this._qualityButton.menuButton_.$('.vjs-icon-placeholder').innerHTML = text;
   };
 
   /**
@@ -720,13 +738,17 @@ var HlsJSQualitySelectorPlugin = function () {
     var hlsjs = this.getHlsJs();
     var levels = hlsjs.levels || [];
 
+    console.log('setQualityHlsJs', height, levels);
+
     if (height === 'auto') {
       hlsjs.currentLevel = -1;
+      this.setButtonInnerText('auto');
     } else {
       for (var i = 0; i < levels.length; ++i) {
         var level = levels[i];
         if (level.height === height) {
           hlsjs.currentLevel = i;
+          this.setButtonInnerText(height + 'p');
           break;
         }
       }
