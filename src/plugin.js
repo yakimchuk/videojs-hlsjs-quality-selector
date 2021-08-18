@@ -26,6 +26,7 @@ class HlsJSQualitySelectorPlugin {
    */
   constructor(player, options) {
     this.player = player;
+    this.config = options;
 
     // If there is quality levels plugin and the HLS tech exists
     // then continue.
