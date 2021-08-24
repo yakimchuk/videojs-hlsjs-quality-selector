@@ -109,7 +109,7 @@
     "watch:js-umd": "rollup -c scripts/umd.rollup.config.js -w",
     "watch_disabled:test": "rollup -c scripts/test.rollup.config.js -w"
   },
-  "version": "1.0.3",
+  "version": "1.0.4",
   "vjsstandard": {
     "ignore": [
       "dist",
