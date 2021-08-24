@@ -59,10 +59,25 @@ class HlsJSQualitySelectorPlugin {
    * Binds listener for quality level changes.
    */
   bindPlayerEvents() {
+
+    var qualityList = this.player.qualityLevels();
+    var levels = qualityList.levels_ || [];
+
+    if (levels.length > 0) {
+      this.onAddQualityLevel();
+    }
+
     this.player.qualityLevels().on('addqualitylevel', this.onAddQualityLevel.bind(this));
 
-    if(this.getHlsJs()) {
-      this.player.tech_.on(Hls.Events.MANIFEST_LOADED, this.fillQualityLevels.bind(this))
+    const hls = this.getHlsJs();
+
+    if (hls) {
+
+      if (hls.levels?.length > 0) {
+        this.fillQualityLevels();
+      }
+
+      this.player.tech_.on(Hls.Events.MANIFEST_PARSED, this.fillQualityLevels.bind(this));
     }
   }
 
@@ -71,7 +86,8 @@ class HlsJSQualitySelectorPlugin {
 
     const player = this.player;
     const levels = hlsjs.levels || [];
-    const levelItems = [];
+
+    let levelItems = [];
 
     for (let i = 0; i < levels.length; ++i) {
       if (!levelItems.filter(_existingItem => {
@@ -98,6 +114,8 @@ class HlsJSQualitySelectorPlugin {
       }
       return 0;
     });
+
+    levelItems = levelItems.reverse();
 
     levelItems.push(this.getQualityMenuItem.call(this, {
       label: player.localize('Auto'),
