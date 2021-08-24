@@ -73,7 +73,7 @@ class HlsJSQualitySelectorPlugin {
 
     if (hls) {
 
-      if (hls.levels?.length > 0) {
+      if (Array.isArray(hls.levels) && hls.levels.length > 0) {
         this.fillQualityLevels();
       }
 
